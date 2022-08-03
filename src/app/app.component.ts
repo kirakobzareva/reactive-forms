@@ -36,6 +36,7 @@ export class AppComponent {
 
   onSubmit() {
     console.log(this.signupForm.value);
+    this.signupForm.reset();
   }
 
   onAddHobby() {
