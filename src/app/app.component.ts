@@ -10,18 +10,29 @@ import { Observable } from 'rxjs';
 export class AppComponent {
   genders = ['male', 'female'];
   forbiddenUserNames = ['Kira', 'Kseniia'];
+  signupForm: FormGroup;
 
-  signupForm: FormGroup = new FormGroup({
-    userData: new FormGroup({
-      username: new FormControl(null, [
-        Validators.required,
-        this.forbiddenNames.bind(this),
-      ]),
-      email: new FormControl(null, [Validators.required, Validators.email], this.forbiddenEmailes),
-    }),
-    gender: new FormControl('female'),
-    hobbies: new FormArray([]),
-  });
+    ngOnInit(): void {
+ this.signupForm = new FormGroup({
+  userData: new FormGroup({
+    username: new FormControl(null, [
+      Validators.required,
+      this.forbiddenNames.bind(this),
+    ]),
+    email: new FormControl(
+      null,
+      [Validators.required, Validators.email],
+      this.forbiddenEmailes
+    ),
+  }),
+  gender: new FormControl('female'),
+  hobbies: new FormArray([]),
+ });
+      // this.signupForm.valueChanges.subscribe(
+      //   (value) => console.log(value)
+      // );
+      // this.signupForm.statusChanges.subscribe((status) => console.log(status));
+  }
 
   onSubmit() {
     console.log(this.signupForm.value);
